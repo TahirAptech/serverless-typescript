@@ -1,0 +1,22 @@
+service: earlybirdee
+frameworkVersion: '3'
+
+plugins:
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-west-2 #us-east-1
+  profile: rafae
+  stage: dev
+
+functions:
+  helloFunction:
+    handler: src/functions/index.handler
+    timeout: 60 # in seconds
+    events:
+      - http:
+          path: hello
+          method: get
+          cors: true
